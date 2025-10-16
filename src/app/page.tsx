@@ -8,6 +8,7 @@ import { Search, MapPin, Music2, ChevronLeft, ChevronRight } from "lucide-react"
 export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [isSticky, setIsSticky] = useState(false)
+  const [testimonialIndex, setTestimonialIndex] = useState(0)
 
 useEffect(() => {
   const handleScroll = () => {
@@ -35,6 +36,42 @@ const instruments = [
   { name: "Mandolin", image: "/images/instruments/mandolin.png" },
   { name: "Guitar", image: "/images/instruments/double bass.png" },
 ]
+
+
+  const testimonials = [
+    {
+      quote:
+        "Maestera is a fantastic platform where we can connect with like minded teachers. We can follow our interests and get connected to the right teacher. I learnt western singing from Pravalikaa and Carnatic singing from Arvindh Sithu. Both of them were very experienced teachers and I have improved my singing from them.",
+      author: "Saatvik Sannuthi",
+    },
+    {
+      quote:
+        "Thanks to Maestera, I found a teacher who understands my style and goals. The onboarding was seamless and I look forward to every class now!",
+      author: "Ananya Rao",
+    },
+    {
+      quote:
+        "I switched to online lessons through Maestera and it has been super convenient. My progress has been consistent with the right mentorship.",
+      author: "Rohan Mehta",
+    },
+  ]
+
+  const showPrevTestimonial = () => {
+    setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
+
+  const showNextTestimonial = () => {
+    setTestimonialIndex((prev) => (prev + 1) % testimonials.length)
+  }
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTestimonialIndex((prev) => (prev + 1) % testimonials.length)
+    }, 5000) // Change every 5 seconds
+
+    return () => clearInterval(interval)
+  }, [testimonials.length])
 
 
   const scrollLeft = () => scrollRef.current?.scrollBy({ left: -250, behavior: "smooth" })
@@ -65,10 +102,12 @@ const instruments = [
     <main className="min-h-screen flex flex-col bg-black text-white">
       {/* Navbar */}
      <header
-  className={`fixed top-0 left-0 w-full z-30 flex items-center justify-between px-18 py-1 transition-all duration-300 ${
-    isSticky ? "bg-white text-black shadow-md" : "bg-transparent text-white"
-  }`}
->
+  className={`${
+    isSticky
+      ? "fixed top-0 left-0 w-full bg-white text-black shadow-md translate-y-0"
+      : "absolute top-0 left-0 w-full bg-transparent text-white"
+  } z-30 flex items-center justify-between px-18 py-1 transition-all duration-300`}
+ >
   {/* Logo */}
   <div className="flex items-center">
     <img
@@ -88,19 +127,19 @@ const instruments = [
     >
       HOME
     </a>
-    <a href="#" className="hover:text-red-500">
+    <a href="/about-us" className="hover:text-red-500">
       ABOUT US
     </a>
     <a href="/find-a-teacher" className="hover:text-red-500">
       FIND A TEACHER
     </a>
-    <a href="#" className="hover:text-red-500">
+    <a href="/become-a-teacher" className="hover:text-red-500">
       BECOME A TEACHER
     </a>
-    <a href="#" className="hover:text-red-500">
+    <a href="/faq" className="hover:text-red-500">
       FAQ
     </a>
-    <a href="#" className="hover:text-red-500">
+    <a href="/contact-us" className="hover:text-red-500">
       CONTACT US
     </a>
   </nav>
@@ -351,6 +390,46 @@ const instruments = [
 
 </section>
 
+
+<section className="relative bg-white text-black py-12 px-6 md:px-12 overflow-hidden">
+  <div className="quote-backdrop absolute inset-0" aria-hidden="true"></div>
+
+  <div className="relative z-10 max-w-6xl mx-auto text-center">
+    <h2 className="text-[2.4rem] md:text-[3.0rem] font-bold tracking-wide mb-10">WALL OF WINS</h2>
+
+    <div className="relative flex items-center justify-center">
+      {/* Outer left red chevron */}
+      <button
+        onClick={showPrevTestimonial}
+        aria-label="Previous testimonial"
+        className="arrow-btn mr-3 hidden md:flex"
+      >
+        <ChevronLeft className="w-7 h-7" />
+      </button>
+
+      
+
+      <div className="w-[800px] md:w-[1000px] flex flex-col items-center">
+        <p className="text-xl md:text-[1.4rem] leading-none md:leading-[2.2rem] font-medium text-[#0a0a0a] text-center">
+          {testimonials[testimonialIndex].quote}
+        </p>
+        <p className="mt-10 text-3xl md:text-4xl font-semibold text-[#E3342F]">
+          {testimonials[testimonialIndex].author}
+        </p>
+      </div>
+
+
+      {/* Outer right red chevron */}
+      <button
+        onClick={showNextTestimonial}
+        aria-label="Next testimonial"
+        className="arrow-btn ml-3 hidden md:flex"
+      >
+        <ChevronRight className="w-7 h-7" />
+      </button>
+    </div>
+  </div>
+</section>
 
 
     </main>
