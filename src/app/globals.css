@@ -77,3 +77,13 @@ body {
   transition: transform 150ms ease;
 }
 .arrow-btn:hover { transform: scale(1.05); }
+
+.reveal-text {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.reveal-text.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,9 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 
 export default function Header() {
   const [isSticky, setIsSticky] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +18,13 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const linkClass = (path: string) =>
+    pathname === path
+      ? "text-red-500 font-semibold"
+      : isSticky
+      ? "text-black hover:text-red-500"
+      : "text-white hover:text-red-500"
 
   return (
     <header
@@ -34,32 +43,25 @@ export default function Header() {
       </div>
 
       <nav className="flex items-center space-x-8 font-medium">
-        <a
-          href="/"
-          className={`transition ${
-            isSticky ? "text-red-500" : "text-red-500"
-          }`}
-        >
+        <a href="/" className={linkClass("/")}>
           HOME
         </a>
-        <a href="/about-us" className="hover:text-red-500">
+        <a href="/about-us" className={linkClass("/about-us")}>
           ABOUT US
         </a>
-        <a href="/find-a-teacher" className="hover:text-red-500">
+        <a href="/find-a-teacher" className={linkClass("/find-a-teacher")}>
           FIND A TEACHER
         </a>
-        <a href="/become-a-teacher" className="hover:text-red-500">
+        <a href="/become-a-teacher" className={linkClass("/become-a-teacher")}>
           BECOME A TEACHER
         </a>
-        <a href="/faq" className="hover:text-red-500">
+        <a href="/faq" className={linkClass("/faq")}>
           FAQ
         </a>
-        <a href="/contact-us" className="hover:text-red-500">
+        <a href="/contact-us" className={linkClass("/contact-us")}>
           CONTACT US
         </a>
       </nav>
     </header>
   )
 }
-
-
