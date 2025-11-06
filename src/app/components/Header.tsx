@@ -9,7 +9,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > window.innerHeight * 0.5) {
+      if (window.scrollY > window.innerHeight * 0.3) {
         setIsSticky(true)
       } else {
         setIsSticky(false)

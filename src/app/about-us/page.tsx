@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { Volume2, VolumeX } from "lucide-react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import Link from "next/link"
 
 export default function AboutUsPage() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -235,16 +236,43 @@ useEffect(() => {
       {/* Column 1 */}
       <div className="grid gap-4">
         {/* Big card */}
-        <div className="bg-white h-84 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.10)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer"></div>
+        <div className="bg-white h-84 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.12)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer">
+           <div className="flex flex-col items-center justify-center h-full w-full">
+    <h2 className="text-2xl md:text-3xl font-bold text-black text-center">
+      MEET THE TEAM
+    </h2>
+  </div>
+        </div>
 
         <div className="grid grid-cols-2 gap-4">
           {/* Tall left card */}
-          <div className="bg-white h-100 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.10)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer"></div>
+          <Link href="/contact-us">
+          <div className="bg-white h-100 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.12)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer">
+            <div className="flex flex-col items-center justify-center h-full w-full">
+    <h2 className="text-2xl md:text-[1.6rem] font-medium text-black text-center">
+      Contact Us
+    </h2>
+  </div>
+          </div></Link>
 
           {/* Right stacked small cards */}
           <div className="grid gap-4">
-            <div className="bg-white h-64 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.10)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer"></div>
-            <div className="bg-white h-32 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.10)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer"></div>
+            <Link href="/become-a-teacher">
+            <div className="bg-white h-64 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.12)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer">
+              <div className="flex flex-col items-center justify-center h-full w-full">
+    <h2 className="text-2xl md:text-[1.6rem] font-medium text-black text-center">
+      Become a Teacher
+    </h2>
+  </div>
+            </div>
+            </Link>
+            <div className="bg-white h-32 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.12)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer">
+              <div className="flex flex-col items-center justify-center h-full w-full">
+    <h2 className="text-2xl md:text-[1.6rem] font-medium text-black text-center">
+      FAQs
+    </h2>
+  </div>
+            </div>
           </div>
         </div>
       </div>
@@ -252,16 +280,52 @@ useEffect(() => {
       {/* Column 2 */}
       <div className="grid grid-cols-3 gap-4">
         {/* Row 1 */}
-        <div className="bg-white h-64 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.10)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer col-span-1"></div>
-        <div className="bg-white h-64 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.10)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer col-span-2"></div>
+        <div className="bg-white h-64 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.12)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer col-span-1">
+          <img
+                src="/images/about-us/piano.png" 
+                alt="Piano"
+                className="w-full h-full object-contain rounded-xl"
+              />
+        </div>
+        <div className="bg-white h-64 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.12)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer col-span-2">
+          <div className="flex flex-col items-center justify-center h-full w-full">
+    <h2 className="text-2xl md:text-[1.6rem] font-medium text-black text-center">
+      Start your Music Learning Journey Today
+    </h2>
+  </div>
+        </div>
 
         {/* Row 2 */}
-        <div className="bg-white h-52 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.10)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer col-span-2"></div>
-        <div className="bg-white h-52 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.10)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer col-span-1"></div>
+        <div className="bg-white h-52 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.12)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer col-span-2">
+           <img
+                src="/images/about-us/music.png" 
+                alt="Piano"
+                className="w-full h-full object-contain rounded-xl"
+              />
+        </div>
+        <div className="bg-white h-52 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.12)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer col-span-1">
+          <div className="flex flex-col items-center justify-center px-6 h-full w-full">
+    <h2 className="text-2xl md:text-[1.6rem] font-medium text-black text-center">
+      Coming Soon - Group Classes
+    </h2>
+  </div>
+        </div>
 
         {/* Row 3 */}
-        <div className="bg-white h-64 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.10)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer col-span-1"></div>
-        <div className="bg-white h-64 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.10)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer col-span-2"></div>
+        <div className="bg-white h-64 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.12)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer col-span-1">
+          <div className="flex flex-col items-center justify-center h-full w-full">
+    <h2 className="text-2xl md:text-[1.6rem] font-medium text-black text-center">
+      Offers
+    </h2>
+    </div>
+        </div>
+        <div className="bg-white h-64 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.12)] hover:shadow-[0_3px_16px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer col-span-2">
+          <img
+                src="/images/Home-page-banner.1.png" 
+                alt="Team"
+                className="w-full h-full object-cover rounded-xl"
+              />
+        </div>
       </div>
 
     </div>
