@@ -199,23 +199,23 @@ export default function BecomeTeacher() {
 
         {/* TESTIMONIALS SECTION */}
         {/* TESTIMONIALS SECTION */}
-<section className="bg-black text-white mt-8 text-center py-8 px-2 md:px-4 relative overflow-hidden">
-  <h1 className="text-3xl md:text-[6.6rem] font-bold text-white/50 tracking-wide text-center">
-    TESTIMONIALS
-  </h1>
+        <section className="bg-black text-white mt-8 text-center py-8 px-2 md:px-4 relative overflow-hidden">
+          <h1 className="text-3xl md:text-[6.6rem] font-bold text-white/50 tracking-wide text-center">
+            TESTIMONIALS
+          </h1>
 
-  {/* Fixed-height container to prevent jumping */}
-  <div className="max-w-4xl mx-auto py-16 relative transition-all duration-700 ease-in-out h-[380px] flex flex-col justify-center items-center">
-    <div className="transition-opacity duration-700 ease-in-out text-center">
-      <p className="text-xl md:text-2xl leading-relaxed mb-6 italic text-white/90">
-        “{testimonials[testimonialIndex].text}”
-      </p>
-      <h4 className="text-xl font-semibold text-red-500">
-        — {testimonials[testimonialIndex].name}
-      </h4>
-    </div>
-  </div>
-</section>
+          {/* Fixed-height container to prevent jumping */}
+          <div className="max-w-4xl mx-auto py-16 relative transition-all duration-700 ease-in-out h-[380px] flex flex-col justify-center items-center">
+            <div className="transition-opacity duration-700 ease-in-out text-center">
+              <p className="text-xl md:text-2xl leading-relaxed mb-6 italic text-white/90">
+                “{testimonials[testimonialIndex].text}”
+              </p>
+              <h4 className="text-xl font-semibold text-red-500">
+                — {testimonials[testimonialIndex].name}
+              </h4>
+            </div>
+          </div>
+        </section>
 
 
         {/* FAQ SECTION */}
@@ -230,22 +230,22 @@ export default function BecomeTeacher() {
           />
 
           <FAQItem
-  question="How Do I Sign Up As A Teacher?"
-  answer={
-    <>
-      Signing up is easy! Create a profile on our website by providing your personal details, musical expertise, teaching experience, availability, and preferred teaching format (online, in-person, or both). Once approved, you'll be ready to connect with students.{" "}
-      <a
-        href="https://maestera-onboarding.vercel.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-white font-semibold px-1 py-1 rounded-full ml-1 transition"
-      >
-        "sign up"
-      </a>
-      .
-    </>
-  }
-/>
+            question="How Do I Sign Up As A Teacher?"
+            answer={
+              <>
+                Signing up is easy! Create a profile on our website by providing your personal details, musical expertise, teaching experience, availability, and preferred teaching format (online, in-person, or both). Once approved, you'll be ready to connect with students.{" "}
+                <a
+                  href="https://maestera-onboarding.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white font-semibold px-1 py-1 rounded-full ml-1 transition"
+                >
+                  "sign up"
+                </a>
+                .
+              </>
+            }
+          />
 
 
           <FAQItem
@@ -284,9 +284,8 @@ function FAQItem({
       </button>
 
       <div
-        className={`overflow-hidden transition-all duration-500 ${
-          open ? "max-h-[300px] opacity-100 py-6" : "max-h-0 opacity-0"
-        } bg-[#111] px-6 rounded-b-lg text-lg md:text-xl`}
+        className={`overflow-hidden transition-all duration-500 ${open ? "max-h-[300px] opacity-100 py-6" : "max-h-0 opacity-0"
+          } bg-[#111] px-6 rounded-b-lg text-lg md:text-xl`}
       >
         {answer}
       </div>
