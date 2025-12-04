@@ -2,17 +2,19 @@
 
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
+import Link from "next/link"
 
 export default function Header() {
   const [isSticky, setIsSticky] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
+    let lastSticky = false
     const handleScroll = () => {
-      if (window.scrollY > window.innerHeight * 0.3) {
-        setIsSticky(true)
-      } else {
-        setIsSticky(false)
+      const shouldBeSticky = window.scrollY > window.innerHeight * 0.3
+      if (shouldBeSticky !== lastSticky) {
+        setIsSticky(shouldBeSticky)
+        lastSticky = shouldBeSticky
       }
     }
     window.addEventListener("scroll", handleScroll)
@@ -23,16 +25,15 @@ export default function Header() {
     pathname === path
       ? "text-red-500 font-semibold"
       : isSticky
-      ? "text-black hover:text-red-500"
-      : "text-white hover:text-red-500"
+        ? "text-black hover:text-red-500"
+        : "text-white hover:text-red-500"
 
   return (
     <header
-      className={`${
-        isSticky
-          ? "fixed top-0 left-0 w-full bg-white text-black shadow-md translate-y-0"
-          : "absolute top-0 left-0 w-full bg-transparent text-white"
-      } z-30 flex items-center justify-between px-18 py-1 transition-all duration-300`}
+      className={`${isSticky
+        ? "fixed top-0 left-0 w-full bg-white text-black shadow-md translate-y-0"
+        : "absolute top-0 left-0 w-full bg-transparent text-white"
+        } z-30 flex items-center justify-between px-18 py-1 transition-all duration-300`}
     >
       <div className="flex items-center">
         <img
@@ -43,24 +44,24 @@ export default function Header() {
       </div>
 
       <nav className="flex items-center space-x-8 font-medium">
-        <a href="/" className={linkClass("/")}>
+        <Link href="/" className={linkClass("/")}>
           HOME
-        </a>
-        <a href="/about-us" className={linkClass("/about-us")}>
+        </Link>
+        <Link href="/about-us" className={linkClass("/about-us")}>
           ABOUT US
-        </a>
-        <a href="/find-a-teacher" className={linkClass("/find-a-teacher")}>
+        </Link>
+        <Link href="/find-a-teacher" className={linkClass("/find-a-teacher")}>
           FIND A TEACHER
-        </a>
-        <a href="/become-a-teacher" className={linkClass("/become-a-teacher")}>
+        </Link>
+        <Link href="/become-a-teacher" className={linkClass("/become-a-teacher")}>
           BECOME A TEACHER
-        </a>
-        <a href="/faq" className={linkClass("/faq")}>
+        </Link>
+        <Link href="/faq" className={linkClass("/faq")}>
           FAQ
-        </a>
-        <a href="/contact-us" className={linkClass("/contact-us")}>
+        </Link>
+        <Link href="/contact-us" className={linkClass("/contact-us")}>
           CONTACT US
-        </a>
+        </Link>
       </nav>
     </header>
   )

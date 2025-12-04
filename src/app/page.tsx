@@ -7,6 +7,7 @@ import { motion } from "framer-motion"
 import { Search, MapPin, Music2, ChevronLeft, ChevronRight } from "lucide-react"
 import Header from "./components/Header"
 import TeacherCarousel from "./components/TeacherCarousel"
+import InstrumentCarousel from "./components/InstrumentCarousel"
 
 
 
@@ -162,21 +163,6 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-
-  const instruments = [
-    { name: "Flute", image: "/images/instruments/trumpet.png" },
-    { name: "Saxophone", image: "/images/instruments/saxophone.png" },
-    { name: "Trumpet", image: "/images/instruments/trumpet.png" },
-    { name: "Drum Set", image: "/images/instruments/drum.png" },
-    { name: "Violin", image: "/images/instruments/violin.png" },
-    { name: "Double Bass", image: "/images/instruments/double bass.png" },
-    { name: "Trombone", image: "/images/instruments/trombone.png" },
-    { name: "Piano", image: "/images/instruments/violin.png" },
-    { name: "Mandolin", image: "/images/instruments/mandolin.png" },
-    { name: "Guitar", image: "/images/instruments/double bass.png" },
-  ]
-
-
   const testimonials = [
     {
       quote:
@@ -213,10 +199,6 @@ export default function Home() {
   }, [testimonials.length])
 
 
-
-
-  const scrollLeft = () => scrollRef.current?.scrollBy({ left: -250, behavior: "smooth" })
-  const scrollRight = () => scrollRef.current?.scrollBy({ left: 250, behavior: "smooth" })
   //  useEffect(() => {
   //   const scrollContainer = scrollRef.current
   //   if (!scrollContainer) return
@@ -319,39 +301,10 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            className="mt-12 flex items-center gap-4"
+            transition={{ duration: 1, delay: 0.2 }}
+            className="mt-12 flex items-center justify-center gap-4 w-full"
           >
-            <button
-              onClick={scrollLeft}
-              className="p-2 bg-white/75 text-black rounded-full shadow hover:bg-white/30 backdrop-blur-sm"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-
-            <div
-              ref={scrollRef}
-              className="flex gap-4 overflow-x-scroll no-scrollbar px-4 py-2 bg-white/50 backdrop-blur-sm  text-black rounded-full shadow-lg scroll-smooth w-[800px] border border-white/20"
-            >
-              {[...instruments, ...instruments].map((inst, i) => (
-                <div key={i} className="flex flex-col items-center min-w-[100px]">
-                  <img
-                    src={inst.image}
-                    alt={inst.name}
-                    className="h-10 w-10 object-contain mb-2 transition-transform duration-200 hover:scale-110 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.8)]"
-                  />
-                  <span className="text-sm font-medium whitespace-nowrap">{inst.name}</span>
-                </div>
-              ))}
-            </div>
-
-
-            <button
-              onClick={scrollRight}
-              className="p-2 bg-white/75 text-black rounded-full shadow hover:bg-white/30 backdrop-blur-sm"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+            <InstrumentCarousel />
           </motion.div>
         </div>
 
@@ -393,7 +346,7 @@ export default function Home() {
             MUSIC EDUCATION PLATFORM
           </h2>
           <p className="text-lg md:text-[1.9rem] font-semibold mt-1">
-            Here's How Its Limitless
+            Here&apos;s How Its Limitless
           </p>
           <img
             src="/images/Vector-70.png"

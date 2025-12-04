@@ -15,10 +15,16 @@ type Teacher = {
   image_url: string | null
 }
 
-const normalize = (value: any) =>
+const normalize = (value: unknown) =>
   String(value ?? "").toLowerCase().trim();
 
+import { useSearchParams, useRouter } from "next/navigation"
+
 export default function FindATeacherPage() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const instrumentParam = searchParams.get("instrument")
+
   const [teachers, setTeachers] = useState<Teacher[]>([])
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedInstruments, setSelectedInstruments] = useState<string[]>([])
@@ -58,12 +64,34 @@ export default function FindATeacherPage() {
       .sort((a, b) => a.name.localeCompare(b.name))
   }, [teachers])
 
+  // Sort instruments for display (selected first)
+  const sortedInstruments = useMemo(() => {
+    return [...instrumentsWithCount].sort((a, b) => {
+      const aSelected = selectedInstruments.includes(a.name)
+      const bSelected = selectedInstruments.includes(b.name)
+      if (aSelected && !bSelected) return -1
+      if (!aSelected && bSelected) return 1
+      return a.name.localeCompare(b.name)
+    })
+  }, [instrumentsWithCount, selectedInstruments])
+
+  // Pre-select instrument from query param if valid
+  useEffect(() => {
+    if (instrumentParam && instrumentsWithCount.length > 0) {
+      const normalizedParam = instrumentParam.charAt(0).toUpperCase() + instrumentParam.slice(1).toLowerCase()
+      const exists = instrumentsWithCount.some((i) => i.name === normalizedParam)
+      if (exists) {
+        setSelectedInstruments([normalizedParam])
+      }
+    }
+  }, [instrumentParam, instrumentsWithCount])
+
   // Filter instruments based on search
   const filteredInstruments = useMemo(() => {
-    if (!instrumentSearch) return instrumentsWithCount
+    if (!instrumentSearch) return sortedInstruments
     const query = instrumentSearch.toLowerCase()
-    return instrumentsWithCount.filter(({ name }) => name.toLowerCase().includes(query))
-  }, [instrumentsWithCount, instrumentSearch])
+    return sortedInstruments.filter(({ name }) => name.toLowerCase().includes(query))
+  }, [sortedInstruments, instrumentSearch])
 
   // Compute unique cities with counts (case-insensitive)
   const citiesWithCount = useMemo(() => {
@@ -391,7 +419,7 @@ export default function FindATeacherPage() {
                           {teacher["Full Name"]}
                         </h3>
                         <p className="flex items-center text-lg text-gray-700 mb-1 group-hover:text-gray-200">
-                          <Music2 className="w-5 h-5 mr-2 text-red-500 group-hover:text-red-400" />
+                          <Music2 className="w-5 h-5 mr-2 text-red-500 group-hover:text-red-400 flex-shrink-0" />
                           {teacher.Instruments}
                         </p>
                         <p className="flex items-center text-lg text-gray-700 mb-1 group-hover:text-gray-200">
@@ -409,7 +437,10 @@ export default function FindATeacherPage() {
                         </p>
                       </div>
 
-                      <button className="mt-4 bg-white border border-red-500 text-red-500 px-4 py-2 rounded-full font-semibold hover:bg-red-500 hover:text-white transition-all duration-300 group-hover:bg-red-500 group-hover:text-white">
+                      <button
+                        onClick={() => router.push(`/student-form?teacher=${encodeURIComponent(teacher["Full Name"])}`)}
+                        className="mt-4 bg-white border border-red-500 text-red-500 px-4 py-2 rounded-full font-semibold hover:bg-red-500 hover:text-white transition-all duration-300 group-hover:bg-red-500 group-hover:text-white"
+                      >
                         Book Now
                       </button>
                     </div>

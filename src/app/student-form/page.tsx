@@ -1,8 +1,13 @@
 "use client"
 
 import Header from "../components/Header"
+import { useSearchParams } from "next/navigation"
+import { Suspense } from "react"
 
-export default function StudentSignUpPage() {
+function StudentFormContent() {
+  const searchParams = useSearchParams()
+  const teacherName = searchParams.get("teacher")
+
   return (
     <div className="w-full bg-white text-black min-h-screen flex flex-col">
       {/* Navbar */}
@@ -25,7 +30,7 @@ export default function StudentSignUpPage() {
       <section className="flex justify-center -mt-20 px-4 pb-16">
         <div className="bg-white text-black rounded-2xl shadow-xl w-full max-w-5xl p-10 border border-gray-200">
           <h2 className="text-2xl font-semibold mb-6 text-center">
-            Teacher Name: <span className="font-bold">Aastha Mohapatra</span>
+            Teacher Name: <span >{teacherName || "No Teacher Selected"}</span>
           </h2>
 
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -148,5 +153,13 @@ export default function StudentSignUpPage() {
         </div>
       </section>
     </div>
+  )
+}
+
+export default function StudentSignUpPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <StudentFormContent />
+    </Suspense>
   )
 }

@@ -139,21 +139,19 @@ export default function FAQPage() {
             <div className="flex relative">
               <button
                 onClick={() => setUserType("student")}
-                className={`px-15 py-[18px] font-extrabold text-2xl tracking-wide transition-all duration-300 rounded-[20px] border border-white/80 ${
-                  userType === "student"
+                className={`px-15 py-[18px] font-extrabold text-2xl tracking-wide transition-all duration-300 rounded-[20px] border border-white/80 ${userType === "student"
                     ? "bg-black text-white z-20"
                     : "bg-red-300 text-white/90 z-10 -mr-6"
-                }`}
+                  }`}
               >
                 Student
               </button>
               <button
                 onClick={() => setUserType("teacher")}
-                className={`px-15 py-[18px] font-extrabold text-2xl tracking-wide transition-all duration-300 rounded-[20px] border border-white/80 ${
-                  userType === "teacher"
+                className={`px-15 py-[18px] font-extrabold text-2xl tracking-wide transition-all duration-300 rounded-[20px] border border-white/80 ${userType === "teacher"
                     ? "bg-red-600 text-white z-20"
                     : "bg-black/50 text-white/90 z-10 -ml-6"
-                }`}
+                  }`}
               >
                 Teacher
               </button>
@@ -173,7 +171,7 @@ export default function FAQPage() {
               ))
             ) : (
               <p className="text-center text-gray-500 text-lg">
-                No FAQs found for "{searchQuery}"
+                No FAQs found for &quot;{searchQuery}&quot;
               </p>
             )}
           </div>
