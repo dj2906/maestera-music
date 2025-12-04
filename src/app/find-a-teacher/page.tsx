@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useState, Suspense } from "react"
 import { Search, MapPin, Music2, Clock } from "lucide-react"
 import Header from "../components/Header"
 import { supabase } from "../../lib/supabaseClient"
@@ -20,7 +20,7 @@ const normalize = (value: unknown) =>
 
 import { useSearchParams, useRouter } from "next/navigation"
 
-export default function FindATeacherPage() {
+function FindATeacherContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const instrumentParam = searchParams.get("instrument")
@@ -452,5 +452,13 @@ export default function FindATeacherPage() {
         </div>
       </section>
     </div>
+  )
+}
+
+export default function FindATeacherPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-white text-black">Loading...</div>}>
+      <FindATeacherContent />
+    </Suspense>
   )
 }
