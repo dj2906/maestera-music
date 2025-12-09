@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 
 import { Search, MapPin, Music2, ChevronLeft, ChevronRight } from "lucide-react"
 import Header from "./components/Header"
+import Footer from "./components/Footer"
 import TeacherCarousel from "./components/TeacherCarousel"
 import InstrumentCarousel from "./components/InstrumentCarousel"
 
@@ -346,7 +347,7 @@ export default function Home() {
             MUSIC EDUCATION PLATFORM
           </h2>
           <p className="text-lg md:text-[1.9rem] font-semibold mt-1">
-            Here&apos;s How Its Limitless
+            Here's How Its Limitless
           </p>
           <img
             src="/images/Vector-70.png"
@@ -554,7 +555,7 @@ export default function Home() {
         </div>
       </section>
 
-
+      <Footer />
     </main>
   )
 }

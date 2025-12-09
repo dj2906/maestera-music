@@ -1,9 +1,10 @@
 "use client"
 
-import { useEffect, useMemo, useState, Suspense } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Search, MapPin, Music2, Clock } from "lucide-react"
 import Header from "../components/Header"
 import { supabase } from "../../lib/supabaseClient"
+import Footer from "../components/Footer"
 
 type Teacher = {
   id: number
@@ -15,12 +16,12 @@ type Teacher = {
   image_url: string | null
 }
 
-const normalize = (value: unknown) =>
+const normalize = (value: any) =>
   String(value ?? "").toLowerCase().trim();
 
 import { useSearchParams, useRouter } from "next/navigation"
 
-function FindATeacherContent() {
+export default function FindATeacherPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const instrumentParam = searchParams.get("instrument")
@@ -451,14 +452,7 @@ function FindATeacherContent() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
-  )
-}
-
-export default function FindATeacherPage() {
-  return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-white text-black">Loading...</div>}>
-      <FindATeacherContent />
-    </Suspense>
   )
 }

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
-import Link from "next/link"
 
 export default function Header() {
   const [isSticky, setIsSticky] = useState(false)
@@ -44,24 +43,24 @@ export default function Header() {
       </div>
 
       <nav className="flex items-center space-x-8 font-medium">
-        <Link href="/" className={linkClass("/")}>
+        <a href="/" className={linkClass("/")}>
           HOME
-        </Link>
-        <Link href="/about-us" className={linkClass("/about-us")}>
+        </a>
+        <a href="/about-us" className={linkClass("/about-us")}>
           ABOUT US
-        </Link>
-        <Link href="/find-a-teacher" className={linkClass("/find-a-teacher")}>
+        </a>
+        <a href="/find-a-teacher" className={linkClass("/find-a-teacher")}>
           FIND A TEACHER
-        </Link>
-        <Link href="/become-a-teacher" className={linkClass("/become-a-teacher")}>
+        </a>
+        <a href="/become-a-teacher" className={linkClass("/become-a-teacher")}>
           BECOME A TEACHER
-        </Link>
-        <Link href="/faq" className={linkClass("/faq")}>
+        </a>
+        <a href="/faq" className={linkClass("/faq")}>
           FAQ
-        </Link>
-        <Link href="/contact-us" className={linkClass("/contact-us")}>
+        </a>
+        <a href="/contact-us" className={linkClass("/contact-us")}>
           CONTACT US
-        </Link>
+        </a>
       </nav>
     </header>
   )

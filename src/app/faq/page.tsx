@@ -171,7 +171,7 @@ export default function FAQPage() {
               ))
             ) : (
               <p className="text-center text-gray-500 text-lg">
-                No FAQs found for &quot;{searchQuery}&quot;
+                No FAQs found for "{searchQuery}"
               </p>
             )}
           </div>

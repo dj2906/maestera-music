@@ -1,6 +1,7 @@
 "use client"
 
 import Header from "../components/Header"
+import Footer from "../components/Footer"
 import { useEffect, useState } from "react"
 
 export default function BecomeTeacher() {
@@ -233,14 +234,14 @@ export default function BecomeTeacher() {
             question="How Do I Sign Up As A Teacher?"
             answer={
               <>
-                Signing up is easy! Create a profile on our website by providing your personal details, musical expertise, teaching experience, availability, and preferred teaching format (online, in-person, or both). Once approved, you&apos;ll be ready to connect with students.{" "}
+                Signing up is easy! Create a profile on our website by providing your personal details, musical expertise, teaching experience, availability, and preferred teaching format (online, in-person, or both). Once approved, you'll be ready to connect with students.{" "}
                 <a
                   href="https://maestera-onboarding.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white font-semibold px-1 py-1 rounded-full ml-1 transition"
                 >
-                  &quot;sign up&quot;
+                  "sign up"
                 </a>
                 .
               </>
@@ -259,6 +260,7 @@ export default function BecomeTeacher() {
           />
         </section>
       </section>
+      <Footer />
     </div>
   )
 }
